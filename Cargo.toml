@@ -2,26 +2,61 @@
 name = "cangrebot"
 version = "0.1.0"
 edition = "2021"
-authors = ["Sergio Meneses <sergioalmeneses@gmail.com>", "Daniel Solarte <contact@danielsolarte.com>"]
+authors = [
+	"Sergio Meneses <sergioalmeneses@gmail.com>",
+	"Daniel Solarte <contact@danielsolarte.com>",
+]
 description = "A Discord Bot made with Rust from RustLangEs Community"
 readme = "README.md"
 
 [dependencies]
-anyhow = "1.0.66"
-shuttle-serenity = "0.29.0"
-shuttle-runtime = "0.29.0"
-serenity = { version = "0.11.6", default-features = true, features = ["cache", "framework", "client", "gateway", "rustls_backend", "model", "standard_framework", "voice"] }
-shuttle-secrets = "0.29.0"
-tokio = "1.26.0"
-tracing = "0.1.37"
-color-eyre = "0.6.2"
-serde = "1.0.188"
-serde_json = "1.0.105"
-songbird = { version = "0.3.2", features = ["serenity"] }
-shuttle-static-folder = "0.28.0"
-reqwest = { version = "0.11.22", features = ["json"] }
-scraper = { version = "0.17.1", features = ["indexmap", "deterministic", "atomic"] }
+# Shuttle
+shuttle-serenity = { version = "0.36.0" }
+shuttle-runtime = { version = "0.36.0", features = ["default"] }
+shuttle-secrets = { version = "0.36.0" }
+shuttle-static-folder = { version = "0.28.0" }
 
-[dependencies.parking_lot]
-version = "0.12"
-features = ["send_guard"]
+# Error handling
+anyhow = { version = "1.0.79", features = ["default", "backtrace"] }
+thiserror = { version = "1.0.56" }
+
+# Tracing
+tracing = { version = "0.1.40", features = ["default", "log"] }
+tracing-subscriber = { version = "0.3.18", features = [
+	"default",
+	"valuable",
+	"env-filter",
+	"json",
+	"time",
+] }
+color-eyre = { version = "0.6.2", features = ["default", "issue-url"] }
+
+# Features
+reqwest = { version = "0.11.23", features = ["json"] }
+scraper = { version = "0.18.1", features = [
+	"indexmap",
+	"deterministic",
+	"atomic",
+] }
+
+# Serde
+serde = { version = "1.0.195", features = ["default", "serde_derive"] }
+serde_json = { version = "1.0.111", features = ["default", "preserve_order"] }
+
+
+# Discord
+songbird = { version = "0.4.0", features = ["default"] }
+serenity = { version = "0.11.6", features = [
+	"cache",
+	"framework",
+	"client",
+	"gateway",
+	"rustls_backend",
+	"model",
+	"standard_framework",
+	"voice",
+] }
+
+
+# Runtime
+tokio = { version = "1.35.1", features = ["rt-multi-thread", "macros"] }
